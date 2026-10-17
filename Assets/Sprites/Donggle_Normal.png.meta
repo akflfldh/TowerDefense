@@ -1,0 +1,502 @@
+fileFormatVersion: 2
+guid: bdfc0ca7d8c24294eaee9ba375b8d778
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1850791822821692013
+    second: Donggle_Normal_0
+  - first:
+      213: -796856428092114848
+    second: Donggle_Normal_1
+  - first:
+      213: -5478710489359511109
+    second: Donggle_Normal_2
+  - first:
+      213: 1152522398609436075
+    second: Donggle_Normal_3
+  - first:
+      213: 2357928248401947924
+    second: Donggle_Normal_4
+  - first:
+      213: 911148806481396920
+    second: Donggle_Normal_5
+  - first:
+      213: 5971624577631321086
+    second: Donggle_Normal_6
+  - first:
+      213: -7968312373625050131
+    second: Donggle_Normal_7
+  - first:
+      213: -2737821927976174559
+    second: Donggle_Normal_8
+  - first:
+      213: -6300889775000038062
+    second: Donggle_Normal_9
+  - first:
+      213: 6165513571105881980
+    second: Donggle_Normal_10
+  - first:
+      213: 4709663856512478872
+    second: Donggle_Normal_11
+  - first:
+      213: 5514825129640528086
+    second: Donggle_Normal_12
+  - first:
+      213: 4229264001893557966
+    second: Donggle_Normal_13
+  - first:
+      213: -8444113023785498623
+    second: Donggle_Normal_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Donggle_Warrior_Idle0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 8
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d621c706b555fa910800000000000000
+      internalID: 1850791822821692013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Warrior_Idle1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 8
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0683592fc4ff0f4f0800000000000000
+      internalID: -796856428092114848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Warrior_Attack0
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 8
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1158e56d5b7f3b0800000000000000
+      internalID: -5478710489359511109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Warrior_Attack1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 7
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: badebc4e3059eff00800000000000000
+      internalID: 1152522398609436075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Archer_Idle0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 6
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41d6bd3cf3b09b020800000000000000
+      internalID: 2357928248401947924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Archer_Idle1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 6
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b448d3130d05ac00800000000000000
+      internalID: 911148806481396920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Archer_Attack0
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 5
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efbf4b11ae87fd250800000000000000
+      internalID: 5971624577631321086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Archer_Attack1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 5
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: debaab63d1eda6190800000000000000
+      internalID: -7968312373625050131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Archer_Attack2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 5
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12c74bc467d410ad0800000000000000
+      internalID: -2737821927976174559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Mage_Idle0
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 8
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2555b38122ebe88a0800000000000000
+      internalID: -6300889775000038062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Mage_Idle1
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 8
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7fbd973ded409550800000000000000
+      internalID: 6165513571105881980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Mage_Attack0
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 8
+        width: 30
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e2cea13561c5140800000000000000
+      internalID: 4709663856512478872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Mage_Attack1
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 3
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d80f929c38988c40800000000000000
+      internalID: 5514825129640528086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donggle_Mage_Attack2
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 3
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 108040691fb70da80800000000000000
+      internalID: -8444113023785498623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 00be5d926760c32458e902a678fb1b88
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":2,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Donggle_Archer_Attack0: 5971624577631321086
+      Donggle_Archer_Attack1: -7968312373625050131
+      Donggle_Archer_Attack2: -2737821927976174559
+      Donggle_Archer_Idle0: 2357928248401947924
+      Donggle_Archer_Idle1: 911148806481396920
+      Donggle_Mage_Attack0: 4709663856512478872
+      Donggle_Mage_Attack1: 5514825129640528086
+      Donggle_Mage_Attack2: -8444113023785498623
+      Donggle_Mage_Idle0: -6300889775000038062
+      Donggle_Mage_Idle1: 6165513571105881980
+      Donggle_Normal_13: 4229264001893557966
+      Donggle_Warrior_Attack0: -5478710489359511109
+      Donggle_Warrior_Attack1: 1152522398609436075
+      Donggle_Warrior_Idle0: 1850791822821692013
+      Donggle_Warrior_Idle1: -796856428092114848
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

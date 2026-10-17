@@ -14,12 +14,13 @@ public class UnitSlot : MonoBehaviour, IPointerClickHandler
 
     public bool IsOccupied => currentUnit != null;
 
+    public GameObject CurrentUnit => currentUnit;
 
     public Vector3 SpawnPosition => spawnPoint != null ? spawnPoint.position : transform.position;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSlotClicked.Invoke(this);
+        OnSlotClicked?.Invoke(this);
 
     }
 

@@ -14,6 +14,11 @@ public class UnitPlacementController : MonoBehaviour
     }
 
 
+    [SerializeField]
+    private BattleUIController battleUIController;
+
+
+
     [Header("Managers")]
     [SerializeField]
     private GameManager gameManager;
@@ -33,7 +38,7 @@ public class UnitPlacementController : MonoBehaviour
 
 
     [Header("Selection")]
-    [SerializeField] private JobType? selectedJob = null;
+    private JobType? selectedJob = null;
 
 
     private void OnEnable()
@@ -67,13 +72,13 @@ public class UnitPlacementController : MonoBehaviour
 
     public void SelectJob(JobType job)
     {
-        
+
         if (unitInventory == null)
             return;
-  
+
         if (unitInventory.GetCount(job) <= 0)
             return;
- 
+
         if (FindPrefab(job) == null)
             return;
 
@@ -128,10 +133,27 @@ public class UnitPlacementController : MonoBehaviour
             return;
 
 
-        if (slot == null || slot.IsOccupied)
+        if (slot == null)
             return;
 
-        if(!selectedJob.HasValue)
+        if (slot.IsOccupied)
+        {
+
+            UnitRuntimeStats stats = slot.CurrentUnit.GetComponentInChildren<UnitRuntimeStats>(true);
+
+            if (stats == null)
+                return;
+            //info panel show 
+
+            if (battleUIController != null)
+                battleUIController.OpenUnitInfo(stats);
+
+            return;
+        }
+
+
+
+        if (!selectedJob.HasValue)
         {
             Debug.Log("먼저 직업을 선택하세요.");
             return;
@@ -140,7 +162,7 @@ public class UnitPlacementController : MonoBehaviour
 
         JobType job = selectedJob.Value;
         GameObject prefab = FindPrefab(job);
-        
+
         if (prefab == null)
         {
 
@@ -159,11 +181,11 @@ public class UnitPlacementController : MonoBehaviour
 
 
         GameObject unit = Instantiate(prefab, slot.SpawnPosition, Quaternion.identity);
-       
-        
-        if(unit == null|| !slot.TryAssign(unit))
+
+
+        if (unit == null || !slot.TryAssign(unit))
         {
-            if(unit!=null)
+            if (unit != null)
             {
                 Destroy(unit);
             }
@@ -194,7 +216,7 @@ public class UnitPlacementController : MonoBehaviour
 
     public bool HasPrefab(JobType job)
     {
-        return FindPrefab(job) !=null;
+        return FindPrefab(job) != null;
 
 
     }

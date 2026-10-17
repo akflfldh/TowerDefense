@@ -8,7 +8,11 @@ public class MainMenuUIController : MonoBehaviour
     [SerializeField]
     private string battleSceneName = "Battle";
 
+    [SerializeField]
+    private GameObject mainMenuPanel;
 
+    [SerializeField]
+    private GameObject settingPanel;
 
     public void OnClickStart()
     {
@@ -24,6 +28,19 @@ public class MainMenuUIController : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenSettingPanel()
+    {
+        mainMenuPanel.SetActive(false);
+        settingPanel.SetActive(true);
+
+    }
+
+
+    public void BackToMainMenu()
+    {
+        settingPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
 
     void Start()
     {

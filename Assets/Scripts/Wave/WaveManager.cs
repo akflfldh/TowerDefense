@@ -15,8 +15,26 @@ public class WaveManager : MonoBehaviour
     CheckWaveComplete 웨이브기 종료되면 GameManager?에서 플레이어의 생명수를 보고 패배인지 계속 진행이가능한지 판단해야할듯 
 
      */
+    [System.Serializable]
+    private class WaveEnemyPool
+    {
+        public EnemyStats[] enemyStats;
+
+    }
+
+
+
+
+
+
     [SerializeField]
     private GameManager gameManager;
+
+    [Header("Gold Reward")]
+    [SerializeField] private GoldManager goldManager;
+    [SerializeField] private int goldPerKill = 1;
+
+
 
 
     [SerializeField]
@@ -27,8 +45,40 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private BaseHealth baseHealth;
 
+
+
+    [SerializeField, Min(1)]
+    private int baseEnemyHealth = 10;
+
+    [SerializeField, Min(0)]
+    private int additionalEnemyHealthPerWave = 2;
+
+
+
+
+    [SerializeField, Min(0.1f)]
+    private float baseEnemySpeed = 2.0f;
+
+    //몇 wave마다 속도가 증가할지
+    [SerializeField, Min(1)]
+    private int speedIncreaseInterval = 5;
+
+
+    [SerializeField, Range(0f, 1.0f)]
+    private float speedIncreaseRate = 0.15f;
+
+
+
     [SerializeField]
     private EnemyMovement enemyPrefab;
+
+
+
+    [Header("Wave Enemy Composition")]
+    [SerializeField]
+    private WaveEnemyPool[] waveEnemyPools;
+
+
 
 
     [SerializeField]
@@ -43,7 +93,7 @@ public class WaveManager : MonoBehaviour
     private float spawnInterval = 0.8f;
 
 
-    [SerializeField ,Min(1)]
+    [SerializeField, Min(1)]
     private int maxWave = 10;
 
     public int MaxWave => maxWave;
@@ -57,9 +107,15 @@ public class WaveManager : MonoBehaviour
     public bool isWaveRunning => waveActive || isSpawning;
     public int CurrentWave => currentWave;
 
+    [SerializeField, Min(0)]
+    private int additionalEnemiesPerWave = 2;
+
+
     private readonly HashSet<EnemyMovement> activeEnemies = new();
 
     public event Action<int> OnWaveCompleted;
+
+
 
 
     void Start()
@@ -67,7 +123,7 @@ public class WaveManager : MonoBehaviour
 
     }
 
-   void OnEnable()
+    void OnEnable()
     {
 
         if (gameManager != null)
@@ -81,6 +137,52 @@ public class WaveManager : MonoBehaviour
 
     }
 
+    //해당 wave의 enemy count
+    int GetEnemyCount(int wave)
+    {
+        return baseEnemyCount + (wave - 1) * additionalEnemiesPerWave;
+
+    }
+
+    //해당 wave의 enemy health
+    int GetEnemyHealth(int wave)
+    {
+        return baseEnemyHealth + (wave - 1) * additionalEnemyHealthPerWave;
+    }
+
+    float GetEnemySpeed(int wave)
+    {
+        int increaseCount = wave / speedIncreaseInterval;
+        return baseEnemySpeed * (1.0f + increaseCount * speedIncreaseRate);
+
+
+    }
+
+    EnemyStats GetEnemyStats(int wave, int spawnIndex)
+    {
+
+        int waveIndex = wave - 1;
+
+        if (waveEnemyPools == null || waveIndex < 0 || waveEnemyPools.Length <= waveIndex)
+        {
+            Debug.Log($"Wave {wave} is not  configured");
+            return null;
+
+        }
+        WaveEnemyPool pool = waveEnemyPools[waveIndex];
+
+        if (pool == null || pool.enemyStats == null || pool.enemyStats.Length == 0)
+        {
+            Debug.Log($"Wave {wave} 에 enemyStats가 없습니다.");
+            return null;
+        }
+
+
+        int enemyIndex = spawnIndex % pool.enemyStats.Length;
+        return pool.enemyStats[enemyIndex];
+
+    }
+
 
     [ContextMenu("Start next wave")]
     public void BeginNextWave()
@@ -90,14 +192,14 @@ public class WaveManager : MonoBehaviour
 
         if (gameManager == null || gameManager.State != GameState.Playing)
             return;
-        
+
         //아직 wave 진행중
         if (waveActive)
             return;
 
 
         //마지막 웨이브 이후는 시작 불가능
-        if(currentWave >= maxWave)
+        if (currentWave >= maxWave)
         {
             Debug.Log("최대 웨이브 도달 ");
             return;
@@ -119,21 +221,37 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        int enemyCount = baseEnemyCount + (currentWave - 1) * 3;
-        for(int i=0; i<enemyCount;++ i)
-        {
-            EnemyMovement enemy = Instantiate(enemyPrefab, path.GetPoint(0), Quaternion.identity);
 
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+
+
+        int enemyCount = GetEnemyCount(currentWave);
+        int enemyHealth = GetEnemyHealth(currentWave);
+        float enemySpeed = GetEnemySpeed(currentWave);
+        for (int i = 0; i < enemyCount; ++i)
+        {
+
+            EnemyStats enemyStats = GetEnemyStats(currentWave, i);
+            if (enemyStats == null && enemyStats.Prefab == null)
+                continue;
+
+            EnemyMovement enemy = Instantiate(enemyStats.Prefab, path.GetPoint(0), Quaternion.identity);
+
+            EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+
+
 
             enemy.OnReachedGoal += HandleReachedGoal;
-            enemyHealth.OnDied += HandleEnemyDied;
+            health.OnDied += HandleEnemyDied;
 
 
             activeEnemies.Add(enemy);
             aliveEnemyCount++;
 
             enemy.Initialize(path);
+            enemy.SetMoveSpeed(enemySpeed * enemyStats.SpeedMultiplier);
+            health.Initialize(Mathf.CeilToInt(enemyHealth * enemyStats.HealthMultiplier));
+
 
             if (i < enemyCount - 1)
                 yield return new WaitForSeconds(spawnInterval);
@@ -142,12 +260,13 @@ public class WaveManager : MonoBehaviour
         }
 
 
+
         isSpawning = false;
 
         CheckWaveComplete();
-    
-    
-    
+
+
+
     }
 
 
@@ -155,8 +274,18 @@ public class WaveManager : MonoBehaviour
     {
         EnemyMovement movement = health.GetComponent<EnemyMovement>();
         movement.enabled = false;
+
+        
+
+
         if (RemoveEnemy(movement))
         {
+            if(goldManager !=null)
+            {
+                goldManager.AddGold(goldPerKill);
+            }
+
+
             runStats?.RecordKill();
         }
     }
@@ -215,7 +344,7 @@ public class WaveManager : MonoBehaviour
             return;
 
         waveActive = false;
-        
+
         Debug.Log($"Wave {currentWave} Completed!");
 
 
@@ -235,7 +364,7 @@ public class WaveManager : MonoBehaviour
 
     void HandleGameStateChanged(GameState state)
     {
-        if(state == GameState.GameOver)
+        if (state == GameState.GameOver)
         {
 
 
@@ -255,7 +384,7 @@ public class WaveManager : MonoBehaviour
 
         // 기존 적 이벤트 해제 및 제거
 
-        foreach(EnemyMovement enemy in activeEnemies)
+        foreach (EnemyMovement enemy in activeEnemies)
         {
 
             if (enemy == null)
@@ -264,7 +393,7 @@ public class WaveManager : MonoBehaviour
             //콜백 해제
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
 
-            if(health)
+            if (health)
                 health.OnDied -= HandleEnemyDied;
 
             enemy.OnReachedGoal -= HandleReachedGoal;

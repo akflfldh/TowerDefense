@@ -460,6 +460,62 @@ MonoBehaviour:
       m_LigatureGlyphID: 2283
     - m_ComponentGlyphIDs: 1100000043180000u
       m_LigatureGlyphID: 2221
+    - m_ComponentGlyphIDs: 1a000000b8130000u
+      m_LigatureGlyphID: 2365
+    - m_ComponentGlyphIDs: 1a00000059140000u
+      m_LigatureGlyphID: 2078
+    - m_ComponentGlyphIDs: 1a00000043180000u
+      m_LigatureGlyphID: 2230
+    - m_ComponentGlyphIDs: 18000000b8130000u
+      m_LigatureGlyphID: 2363
+    - m_ComponentGlyphIDs: 1800000059140000u
+      m_LigatureGlyphID: 2076
+    - m_ComponentGlyphIDs: 1800000043180000u
+      m_LigatureGlyphID: 2228
+    - m_ComponentGlyphIDs: 19000000b8130000u
+      m_LigatureGlyphID: 2364
+    - m_ComponentGlyphIDs: 1900000059140000u
+      m_LigatureGlyphID: 2077
+    - m_ComponentGlyphIDs: 1900000043180000u
+      m_LigatureGlyphID: 2229
+    - m_ComponentGlyphIDs: 2d0000003500000025000000u
+      m_LigatureGlyphID: 2085
+    - m_ComponentGlyphIDs: 2e000000fc000000u
+      m_LigatureGlyphID: 22134
+    - m_ComponentGlyphIDs: 2e000000fe000000u
+      m_LigatureGlyphID: 22135
+    - m_ComponentGlyphIDs: 2e000000290000005b000000u
+      m_LigatureGlyphID: 2279
+    - m_ComponentGlyphIDs: 2e0000003100000042000000u
+      m_LigatureGlyphID: 2304
+    - m_ComponentGlyphIDs: 2e00000023000000u
+      m_LigatureGlyphID: 2267
+    - m_ComponentGlyphIDs: 2e00000037000000u
+      m_LigatureGlyphID: 2318
+    - m_ComponentGlyphIDs: 2e00000038000000u
+      m_LigatureGlyphID: 2324
+    - m_ComponentGlyphIDs: 2e00000018010000u
+      m_LigatureGlyphID: 2326
+    - m_ComponentGlyphIDs: 22000000100000004e000000u
+      m_LigatureGlyphID: 2356
+    - m_ComponentGlyphIDs: 2200000036000000u
+      m_LigatureGlyphID: 2248
+    - m_ComponentGlyphIDs: 490000003100000042000000u
+      m_LigatureGlyphID: 2246
+    - m_ComponentGlyphIDs: 4900000042000000u
+      m_LigatureGlyphID: 2335
+    - m_ComponentGlyphIDs: 3800000043000000u
+      m_LigatureGlyphID: 2354
+    - m_ComponentGlyphIDs: 4a0000004f000000u
+      m_LigatureGlyphID: 2337
+    - m_ComponentGlyphIDs: 28000000290000005b000000u
+      m_LigatureGlyphID: 2280
+    - m_ComponentGlyphIDs: 280000003100000042000000u
+      m_LigatureGlyphID: 2305
+    - m_ComponentGlyphIDs: 2800000023000000u
+      m_LigatureGlyphID: 2268
+    - m_ComponentGlyphIDs: 280000005a000000u
+      m_LigatureGlyphID: 2334
     m_GlyphPairAdjustmentRecords:
     - m_FirstAdjustmentRecord:
         m_GlyphIndex: 16

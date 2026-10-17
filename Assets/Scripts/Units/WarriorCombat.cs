@@ -6,16 +6,14 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
     private Animator animator;
 
     [Header("Reference")]
-    [SerializeField] private GameManager gameManager;
+     private GameManager gameManager;
     [SerializeField] private Transform attackOrigin;
 
 
     [Header("Combat")]
     [SerializeField] private LayerMask enemyLayer;
 
-    [SerializeField] private float attackRange;
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float attackInterval;
+    private UnitRuntimeStats unitStats;
 
 
     private EnemyHealth currentTarget;
@@ -33,6 +31,7 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
     void Awake()
     {
         animator = GetComponent<Animator>();
+        unitStats = GetComponent<UnitRuntimeStats>();
     }
 
     public void Initialize(GameManager gameManager)
@@ -71,7 +70,7 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
         isAttacking = true;
         hitApplied = false;
 
-        nextAttackTime = Time.time + attackInterval;
+        nextAttackTime = Time.time + unitStats.AttackInterval;
         Debug.Log("Attack Trigger 호출!");
         animator.SetTrigger(AttackHash);
 
@@ -100,11 +99,11 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
         float distance = Vector2.Distance(GetAttackPosition(), currentTarget.transform.position);
 
         // 타격 시점에도 사거리 안에 있는지 검사
-        if (distance > attackRange)
+        if (distance > unitStats.AttackRange)
             return;
 
 
-        currentTarget.TakeDamage(attackDamage);
+        currentTarget.TakeDamage(unitStats.Damage);
     }
 
     // Attack 애니메이션의 마지막 프레임에서 호출
@@ -117,7 +116,7 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
     EnemyHealth FindTarget()
     {
         Vector2 origin = GetAttackPosition();
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, attackRange, enemyLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, unitStats.AttackRange, enemyLayer);
 
 
         EnemyHealth nearestEnemy = null;
@@ -163,7 +162,7 @@ public class WarriorCombat : MonoBehaviour , IUnitInitializer
             attackOrigin != null
                 ? attackOrigin.position
                 : transform.position,
-            attackRange
+            unitStats.AttackRange
         );
     }
 }

@@ -90,6 +90,14 @@ public class EnemyMovement : MonoBehaviour
 
         Destroy(gameObject);
 
+    
+    
+    }
+
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = Mathf.Max(0.1f, speed);
     }
 
 

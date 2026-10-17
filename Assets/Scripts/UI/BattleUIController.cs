@@ -23,6 +23,15 @@ public class BattleUIController : MonoBehaviour
 
 
 
+    [SerializeField]
+    private GameObject settingPanel;
+
+
+    [SerializeField]
+    private UnitInfoPanel unitInfoPanel;
+
+
+
     void OnEnable()
     {
         if (gameManager != null)
@@ -105,6 +114,14 @@ public class BattleUIController : MonoBehaviour
     }
 
 
+    public void OpenSetting()
+    {
+        CloseAllPanels();
+
+
+        settingPanel.SetActive(true);
+    }
+
     void CloseAllPanels()
     {
         if (resultUI != null)
@@ -112,6 +129,41 @@ public class BattleUIController : MonoBehaviour
 
         if (pausePanel != null)
             pausePanel.SetActive(false);
+
+        if (unitInfoPanel != null)
+            unitInfoPanel.Hide();
+    }
+
+    public void BackToPause()
+    {
+
+        if (gameManager.State != GameState.Paused)
+            return;
+
+        settingPanel.SetActive(false);
+        pausePanel.SetActive(true);
+    }
+
+
+
+    public void OpenUnitInfo(UnitRuntimeStats unit)
+    {
+        if (unit == null || unitInfoPanel == null)
+            return;
+
+        unitInfoPanel.Show(unit);
+
+
+
+    }
+
+    public void CloseUnitInfo()
+    {
+        if (unitInfoPanel == null)
+            return;
+
+        unitInfoPanel.Hide();
+
 
     }
 

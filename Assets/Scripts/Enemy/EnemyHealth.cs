@@ -6,10 +6,13 @@ public class EnemyHealth : MonoBehaviour
 {
 
     [SerializeField]
-    private float maxHealth = 10.0f; 
+    private int maxHealth = 10; 
 
-    public float CurrentHealth { get; private set; }
+    public int CurrentHealth { get; private set; }
 
+
+
+    public event Action<int, int> OnHealthChanged;
     public event Action<EnemyHealth> OnDied;
 
     private bool isDead = false;
@@ -20,14 +23,23 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public void Initialize(int health)
+    {
+
+        maxHealth = Mathf.Max(1, health);
+        CurrentHealth = maxHealth;
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+
+    }
+
+    public void TakeDamage(int damage)
     {
 
         if (isDead || damage <= 0.0f)
             return;
 
 
-        CurrentHealth = Mathf.Max(0.0f, CurrentHealth - damage);
+        CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
 
 
 
@@ -77,7 +89,7 @@ public class EnemyHealth : MonoBehaviour
         if (!Application.isPlaying)
             return;
 
-        TakeDamage(5.0f);
+        TakeDamage(5);
 
 
 

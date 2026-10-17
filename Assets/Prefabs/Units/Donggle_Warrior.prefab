@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 128093741683574532}
   - component: {fileID: 2885189188484529415}
   - component: {fileID: 7543582196357603903}
+  - component: {fileID: 6335139476285862270}
   m_Layer: 0
   m_Name: Donggle_Warrior
   m_TagString: Untagged
@@ -129,14 +130,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4572b435f11b86a40a7f087e559a8914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WarriorCombat
-  gameManager: {fileID: 0}
   attackOrigin: {fileID: 3383419462909450024}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 1.5
-  attackDamage: 5
-  attackInterval: 1
+--- !u!114 &6335139476285862270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070165246586185406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89635aef5152834599aa6ec006b9e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitRuntimeStats
+  baseStats: {fileID: 11400000, guid: a07f79a49d95f0640b26dc985912ad7a, type: 2}
 --- !u!1 &4695378074473925276
 GameObject:
   m_ObjectHideFlags: 0
