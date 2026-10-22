@@ -6,6 +6,9 @@ public class UnitStats : ScriptableObject
     [Header("Identity")]
     public JobType JobType;
 
+    public UnitRank Rank;
+
+
     public string UnitName;
 
     public string Description;

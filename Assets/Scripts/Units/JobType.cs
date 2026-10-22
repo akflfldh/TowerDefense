@@ -9,3 +9,19 @@ public enum JobType
     Mage
 
 }
+
+
+public enum UnitRank
+{ 
+    E,
+    D,
+    C,
+    B,
+    A,
+    S
+
+
+
+}
+
+

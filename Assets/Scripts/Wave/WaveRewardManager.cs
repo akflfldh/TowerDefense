@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System;
+using Microsoft.Extensions.Logging.Abstractions;
 
 /*
 
@@ -20,27 +21,18 @@ public class WaveRewardManager : MonoBehaviour
 
 
     [SerializeField]
-    private UnitInventory unitInventory;
+    private GoldManager goldManager;
 
 
-
-    [SerializeField, Min(0)]
-    private int startingUnitCount = 2;
-
-
-    [SerializeField]
-    private JobType[] rewardPool =
-    {
-
-        JobType.Warrior
-
-    };
-
+    // 보상 금액은 예시
+    [SerializeField, Min(1)] private int goldPerWave = 50;
 
     private readonly HashSet<int> rewardedWaves = new();
 
 
-    public event Action<int, JobType> OnWaveRewardGranted;
+
+    //wave, 지급한 골드 
+    public event Action<int, int> OnWaveRewardGranted;
 
 
     private void OnEnable()
@@ -70,57 +62,30 @@ public class WaveRewardManager : MonoBehaviour
 
         rewardedWaves.Clear();
 
-        unitInventory.ResetForRun();
-        for (int i = 0; i < startingUnitCount; i++)
-        {
-            GrantRandomJob();
-        }
+       
 
     }
 
 
-    private JobType? GrantRandomJob()
-    {
-        if (unitInventory == null ||
-           rewardPool == null ||
-           rewardPool.Length == 0)
-        {
-            Debug.LogError("Invalid reward configuration!");
-            return null;
-        }
-
-
-        int index = UnityEngine.Random.Range(0, rewardPool.Length);
-
-        JobType job = rewardPool[index];
-
-        unitInventory.Add(job,1);
-
-
-        Debug.Log($"Reward Unit: {job}");
-
-
-        return job;
-    }
-
+    
 
 
     private void HandleWaveCompleted(int wave)
     {
+
+        if (goldManager == null || goldPerWave <= 0)
+        {
+            Debug.LogError("웨이브 골드 보상 설정 확인필요");
+            return;
+
+        }
         //동일 웨이브대한 중복 보상 방지 
         if (!rewardedWaves.Add(wave))
             return;
 
-
-        JobType? rewardedJob =   GrantRandomJob();
-
-        if(rewardedJob.HasValue)
-        {
-            OnWaveRewardGranted?.Invoke(wave, rewardedJob.Value);
-        }
-
-
-
+        goldManager.AddGold(goldPerWave);
+        OnWaveRewardGranted?.Invoke(wave, goldPerWave);
+     
 
     }
 

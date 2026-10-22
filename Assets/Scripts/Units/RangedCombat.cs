@@ -49,18 +49,23 @@ public class RangedCombat : MonoBehaviour, IUnitInitializer
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Combat update 시작");
+
         if (gameManager == null || gameManager.State != GameState.Playing)
             return;
 
+        Debug.Log("Combat attack 가능여부");
         if (isAttacking || Time.time < nextAttackTime)
             return;
 
-
+        Debug.Log("타켓 체크");
         EnemyHealth target = FindTarget();
 
 
         if (target == null)
             return;
+
+        Debug.Log("Enemy 타켓 찾았다.!");
 
         currentTarget = target;
         isAttacking = true;

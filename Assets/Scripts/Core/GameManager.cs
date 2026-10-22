@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private WaveRewardManager waveRewardManager;
 
 
+    [SerializeField] private UnitInventory unitInventory;
+
     public GameState State { get; private set; } = GameState.Ready;
 
 
@@ -52,7 +54,9 @@ public class GameManager : MonoBehaviour
 
 
         //초기화 및 시작 보상(스타터팩 제공) 
+        unitInventory.ResetForRun();
         waveRewardManager.InitializeRun();
+       
 
         ChangeState(GameState.Playing);
     }

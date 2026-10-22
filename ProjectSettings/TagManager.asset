@@ -41,6 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 729880319
+    locked: 0
+  - name: Shadow
+    uniqueID: 1411156857
+    locked: 0
+  - name: Tree
+    uniqueID: 784585221
+    locked: 0
+  - name: Slot
+    uniqueID: 3192724007
+    locked: 0
+  - name: Unit
+    uniqueID: 477554775
+    locked: 0
+  - name: Projectile
+    uniqueID: 1775478359
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

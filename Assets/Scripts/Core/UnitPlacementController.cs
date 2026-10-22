@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitPlacementController : MonoBehaviour
@@ -28,10 +29,6 @@ public class UnitPlacementController : MonoBehaviour
 
 
 
-    [Header("Unit Prefabs")]
-    [SerializeField]
-    private JobPrefabEntry[] jobPrefabs;
-
 
     [SerializeField]
     private UnitSlot[] slots;
@@ -39,6 +36,11 @@ public class UnitPlacementController : MonoBehaviour
 
     [Header("Selection")]
     private JobType? selectedJob = null;
+
+
+    private UnitSlot selectedSlot;
+
+    public UnitSlot SelectedSlot => selectedSlot;
 
 
     private void OnEnable()
@@ -70,58 +72,7 @@ public class UnitPlacementController : MonoBehaviour
     }
 
 
-    public void SelectJob(JobType job)
-    {
-
-        if (unitInventory == null)
-            return;
-
-        if (unitInventory.GetCount(job) <= 0)
-            return;
-
-        if (FindPrefab(job) == null)
-            return;
-
-
-        selectedJob = job;
-        Debug.Log($"Selected Job: {job}");
-    }
-
-    // 나중에 UI Button에서 호출
-    public void SelectWarrior()
-    {
-        SelectJob(JobType.Warrior);
-    }
-
-    public void SelectArcher()
-    {
-        SelectJob(JobType.Archer);
-    }
-
-    public void SelectMage()
-    {
-        SelectJob(JobType.Mage);
-    }
-
-    private GameObject FindPrefab(JobType job)
-    {
-
-        if (jobPrefabs == null)
-            return null;
-
-
-        foreach (JobPrefabEntry entry in jobPrefabs)
-        {
-            if (entry.job == job)
-            {
-                return entry.prefab;
-            }
-
-        }
-
-        return null;
-
-    }
+ 
 
 
 
@@ -135,6 +86,8 @@ public class UnitPlacementController : MonoBehaviour
 
         if (slot == null)
             return;
+
+        SetSelectedSlot(null);
 
         if (slot.IsOccupied)
         {
@@ -151,75 +104,66 @@ public class UnitPlacementController : MonoBehaviour
             return;
         }
 
+        battleUIController?.CloseUnitInfo();
 
+        SetSelectedSlot(slot);
+   
+        Debug.Log("소환할 슬롯을 선택했습니다.");
 
-        if (!selectedJob.HasValue)
+    }
+
+  
+    private void SetSelectedSlot(UnitSlot slot)
+    {
+        if(selectedSlot !=null)
         {
-            Debug.Log("먼저 직업을 선택하세요.");
-            return;
+            selectedSlot.SetSelected(false);
+        }
+
+        selectedSlot = slot;
+        if(selectedSlot!=null)
+        {
+            selectedSlot.SetSelected(true);   
+
         }
 
 
-        JobType job = selectedJob.Value;
-        GameObject prefab = FindPrefab(job);
+    }
 
-        if (prefab == null)
+
+
+    public bool PlaceUnit(GameObject prefab)
+    {
+        if (selectedSlot == null)
+            return false;
+
+
+        GameObject unit = Instantiate(prefab, selectedSlot.SpawnPosition, Quaternion.identity);
+
+
+        if (!selectedSlot.TryAssign(unit))
         {
-
-            Debug.LogWarning("Unit prefab not found!");
-            return;
-
+            Destroy(unit);
+            return false;
         }
 
-
-        if (!unitInventory.TryConsume(job))
-        {
-
-            Debug.Log("Not enough unit cards!");
-            return;
-        }
-
-
-        GameObject unit = Instantiate(prefab, slot.SpawnPosition, Quaternion.identity);
-
-
-        if (unit == null || !slot.TryAssign(unit))
-        {
-            if (unit != null)
-            {
-                Destroy(unit);
-            }
-            //배치실패 카드반환 
-            unitInventory.Add(job);
-        }
-
-
-
-        foreach (MonoBehaviour component in
-              unit.GetComponentsInChildren<MonoBehaviour>(true))
+        foreach (MonoBehaviour component in unit.GetComponentsInChildren<MonoBehaviour>(true))
         {
             if (component is IUnitInitializer initializer)
             {
                 initializer.Initialize(gameManager);
             }
+
         }
 
 
-        selectedJob = null;
-
-        Debug.Log($"Summoned: {selectedJob}");
-
-
-
+        SetSelectedSlot(null);
+        return true;
 
     }
 
-    public bool HasPrefab(JobType job)
-    {
-        return FindPrefab(job) != null;
 
 
-    }
 
     void Start()
     {

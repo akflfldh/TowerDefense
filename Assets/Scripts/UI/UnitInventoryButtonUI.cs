@@ -59,9 +59,6 @@ public class UnitInventoryButtonUI : MonoBehaviour
         if (unitPlacementController == null)
             return;
 
-        unitPlacementController.SelectJob(jobType);
-
-
     }
 
 
@@ -78,17 +75,7 @@ public class UnitInventoryButtonUI : MonoBehaviour
 
     void Refresh()
     {
-        if (unitInventory == null)
-            return;
-
-        int count = unitInventory.GetCount(jobType);
-        if(countText != null)
-        {
-            countText.text = $"x {count}";
-        }
-
-        button.interactable= count> 0 && unitPlacementController != null &&
-            unitPlacementController.HasPrefab(jobType);
+       
 
     }
     void Start()
